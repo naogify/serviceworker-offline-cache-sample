@@ -6,8 +6,13 @@ self.addEventListener('install', (event) => {
   self.skipWaiting();
 });
 
+self.addEventListener('activate', () => self.clients.claim());
+
 // ページ遷移だけをフック
 self.addEventListener('fetch', (event) => {
+
+  console.log(event);
+
   if (event.request.mode !== 'navigate') return;
 
   event.respondWith(
